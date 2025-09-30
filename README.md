@@ -31,7 +31,7 @@ Start the server:
 uvicorn src.main:app --reload --host localhost --port 8000
 ```
 
-The application will automatically initialize the vector store with sample documentation on startup.
+The application will automatically initialize the vector store with sample data on startup.
 
 ## API Usage
 
@@ -83,7 +83,6 @@ src/
 ```
 
 ## Configuration
-
 The application uses the following default settings which can be modified in `src/config.py`:
 
 - `openai_api_key`: Required OpenAI API key
@@ -91,3 +90,8 @@ The application uses the following default settings which can be modified in `sr
 - `embedding_model`: "text-embedding-3-small"
 - `vector_dimension`: 512
 - `top_k_results`: 5
+
+## Improvements
+
+- Implementing guardrails to ensure that the model does not hallucinate or provide responses outside the scope of the input data.
+- Setting up an evaluation loop that wraps the model which will enable to model to learn from its responses and expected behaviour.
