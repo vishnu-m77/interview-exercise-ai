@@ -1,1 +1,7 @@
 .env
+bin/
+include/
+share/
+lib/
+*.cfg
+*pycache*

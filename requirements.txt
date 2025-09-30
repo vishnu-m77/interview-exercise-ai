@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sentence-transformers
+faiss-cpu
+pydantic
+pydantic-settings
+pytest
+requests
+openai
