@@ -1,15 +1,9 @@
-import subprocess
-import json
 import pytest
+from src.api import resolve_ticket, initialize_data
 
-def resolve_ticket(request_text: str):
-    cmd = [
-        "curl", "-s", "-X", "POST", "http://localhost:8000/resolve-ticket",
-        "-H", "Content-Type: application/json",
-        "-d", json.dumps(request_text)
-    ]
-    result = subprocess.run(cmd, capture_output=True, text=True, check=True)
-    return json.loads(result.stdout)
+@pytest.fixture(autouse=True)
+def setup_vector_store():
+    initialize_data()
 
 @pytest.mark.parametrize("request_text, expected_action", [
     (
@@ -33,7 +27,8 @@ def resolve_ticket(request_text: str):
         "resolved"
     )
 ])
+
 def test_resolve_ticket(request_text, expected_action):
-    response = resolve_ticket(request_text)
+    response = resolve_ticket({"ticket_text": request_text})
     assert "action_required" in response, f"Missing action_required in response: {response}"
     assert response["action_required"] == expected_action, f"Unexpected action: {response}"
