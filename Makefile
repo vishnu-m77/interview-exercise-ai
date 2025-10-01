@@ -13,7 +13,7 @@ stop:
 	docker-compose down
 
 test:
-	docker-compose exec app pytest src/tests/ -v
+	docker-compose exec app pytest src/tests/ -v --disable-warnings
 
 logs:
 	docker-compose logs -f app

@@ -33,6 +33,13 @@ uvicorn src.main:app --reload --host localhost --port 8000
 
 The application will automatically initialize the vector store with sample data on startup.
 
+## Using Makefile and Docker
+
+```bash
+make build
+make run
+```
+
 ## API Usage
 
 ### Health Check
@@ -61,13 +68,6 @@ Response format:
 - `GET /` - Root endpoint
 - `GET /health` - Health check
 - `POST /resolve-ticket` - Resolve support ticket (expects ticket_text as JSON string)
-
-## Testing
-
-Run tests:
-```bash
-pytest src/tests/
-```
 
 ## Project Structure
 
