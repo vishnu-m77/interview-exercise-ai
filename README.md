@@ -91,6 +91,16 @@ The application uses the following default settings which can be modified in `sr
 - `vector_dimension`: 512
 - `top_k_results`: 5
 
+## Testing
+The test files for this project are in the `src/tests/` directory. The testing module is very basic and has room for a lot of improvement. Testing can be done locally with the command:
+```bash
+python -m pytest src/tests/
+```
+Or testing can also be run with the Makefile on a Docker instance:
+```bash
+make test
+```
+
 ## Improvements
 
 - Implementing guardrails to ensure that the model does not hallucinate or provide responses outside the scope of the input data.

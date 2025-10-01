@@ -1,29 +1,27 @@
 .PHONY: build run stop test clean logs shell
 
 build:
-	docker build -t app .
+	docker-compose build
 
 run:
-	docker run -d --name app -p 8000:8000 --env-file .env app
+	docker-compose up -d
 
 dev:
-	docker run --name app -p 8000:8000 --env-file .env app
+	docker-compose up
 
 stop:
-	docker stop app && docker rm app
+	docker-compose down
 
 test:
-	docker run --rm --env-file .env app pytest src/tests/ -v
+	docker-compose exec app pytest src/tests/ -v
 
 logs:
-	docker logs -f app
+	docker-compose logs -f app
 
 shell:
-	docker exec -it app /bin/bash
+	docker-compose exec app /bin/bash
 
 clean:
-	docker stop app 2>/dev/null || true
-	docker rm app 2>/dev/null || true
-	docker rmi app 2>/dev/null || true
+	docker-compose down --rmi all --volumes --remove-orphans
 
 rebuild: clean build
